@@ -1,0 +1,40 @@
+@page "/AddAdults"
+@attribute [Authorize]
+@using DNP_Assignment.Data
+@using Models
+@inject IAdultData _adultData
+@inject NavigationManager NavigationManager 
+
+
+<h3>Add Adults</h3>
+
+<EditForm Model="@newAdult" OnValidSubmit="@AddNewAdult">
+    <DataAnnotationsValidator/> <ValidationSummary/>
+    <div class="form-group"> FirstName:<br/> 
+        <InputText @bind-Value="newAdult.FirstName"/> 
+    </div>
+    
+    <div class="form-group"> LastName:<br/> <InputText  @bind-Value="newAdult.LastName"/> </div>
+    <div class="form-group"> JobTitle:<br/> <InputText @bind-Value="job.JobTitle"/> </div> 
+    <div class="form-group"> Salary:<br/> <InputNumber @bind-Value="job.Salary"/> </div>   
+    
+    <p class="actions">
+        <button class="btn btn-outline-dark" type="submit">Create</button>
+    </p>
+</EditForm>
+
+@code {
+    
+    private Adult newAdult = new Adult();
+    private Job job = new Job();
+
+    private void AddNewAdult()
+    {
+        newAdult.JobTitle = job;
+        _adultData.AddAdults(newAdult);
+        NavigationManager.NavigateTo("/Adults");
+    }
+    
+    
+    
+}

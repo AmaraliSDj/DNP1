@@ -1,0 +1,107 @@
+@page "/Adults"
+@using Models
+@using DNP_Assignment.Data
+@inject IAdultData _adultData
+@inject NavigationManager navMan;
+
+<h3>Adults</h3>
+
+
+<p> Search <input type="Text" @oninput="@((arg) => FilterByFirstname(arg))"/> </p>
+
+@if (AdultsToShow == null)
+{
+    <p>
+        <em>Loading...</em>
+    </p>
+}
+else if (!AdultsToShow.Any())
+{
+    <p>
+        <em>No ToDo items exist. Please add some.</em>
+    </p>
+}
+else
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>JobTitle</th>
+            <th>Salary</th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        @foreach (var item in AdultsToShow)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+                <td>@item.JobTitle.JobTitle</td>
+                <td>@item.JobTitle.Salary</td>
+
+                <AuthorizeView>
+                    <td>
+                        <button @onclick="@(() => RemoveTodo(item.Id))">
+                            <i class="oi oi-trash" style="color:red"/>
+                        </button>
+                    </td>
+                    
+
+                </AuthorizeView>
+            </tr>
+        }
+        </tbody>
+
+    </table>
+}
+
+@code {
+
+    private IList<Adult> filterAdultList;
+    private IList<Adult> AdultsToShow;
+    private string? filterByFirstName;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        filterAdultList = _adultData.GetAdults();
+        AdultsToShow = filterAdultList;
+    }
+
+    private void RemoveTodo(int adultId)
+    {
+        Adult adultToRemove = AdultsToShow.First(a => a.Id == adultId);
+        _adultData.RemoveAdults(adultId);
+    }
+
+
+    private void FilterByFirstname(ChangeEventArgs changeEventArgs)
+    {
+        filterByFirstName = changeEventArgs.Value.ToString();
+
+        if (filterByFirstName.Length <= 0)
+        {
+            AdultsToShow = filterAdultList;
+        }
+        else
+        {
+            AdultsToShow = AdultsToShow.Where(
+                a => a.FirstName.ToLower().Contains(filterByFirstName.ToLower()) || a.FirstName.ToUpper().Contains(filterByFirstName.ToUpper()) ||
+                     a.LastName.ToLower().Contains(filterByFirstName.ToLower()) || a.LastName.ToUpper().Contains(filterByFirstName.ToUpper()) ||
+                     a.JobTitle.JobTitle.ToLower().Contains(filterByFirstName.ToLower()) || a.JobTitle.JobTitle.ToUpper().Contains(filterByFirstName.ToUpper()) ||
+                     a.JobTitle.Salary.ToString().ToLower().Contains(filterByFirstName.ToLower()) || a.Id.ToString().ToLower().Contains(filterByFirstName.ToLower())).ToList();
+        }
+    }
+
+
+
+
+
+
+}
