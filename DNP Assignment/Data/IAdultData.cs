@@ -1,19 +1,20 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Models;
 
 namespace DNP_Assignment.Data
 {
     public interface IAdultData
     {
-        IList<Adult> GetAdults();
+        Task<IList<Adult>> GetAdults();
 
-        void AddAdults(Adult adult);
+        Task<Adult> AddAdults(Adult adult);
 
-        void RemoveAdults(int adultId);
+        Task RemoveAdults(int adultId);
 
-        void Update(Adult adult);
+        Task<Adult> Update(Adult adult);
 
-        Adult Get(int id);
+        Task<Adult> Get(int id);
 
 
 

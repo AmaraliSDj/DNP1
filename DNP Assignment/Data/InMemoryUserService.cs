@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Threading.Tasks;
 
 
 namespace DNP_Assignment.Data
@@ -28,7 +28,7 @@ namespace DNP_Assignment.Data
         }
 
 
-        public User ValidateUser(string userName, string Password)
+        public async Task<User> ValidateUser(string userName, string Password)
         {
             User first = users.FirstOrDefault(user => user.UserName.Equals(userName));
             if (first == null)

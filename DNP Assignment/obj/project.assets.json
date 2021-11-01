@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\amara\\OneDrive\\Desktop\\DNP_Assignment_1-master\\DNP Assignment\\DNP Assignment.csproj",
+      "projectUniqueName": "C:\\Users\\amara\\RiderProjects\\DNP_Assignment_1\\DNP Assignment\\DNP Assignment.csproj",
       "projectName": "DNP Assignment",
-      "projectPath": "C:\\Users\\amara\\OneDrive\\Desktop\\DNP_Assignment_1-master\\DNP Assignment\\DNP Assignment.csproj",
+      "projectPath": "C:\\Users\\amara\\RiderProjects\\DNP_Assignment_1\\DNP Assignment\\DNP Assignment.csproj",
       "packagesPath": "C:\\Users\\amara\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\amara\\OneDrive\\Desktop\\DNP_Assignment_1-master\\DNP Assignment\\obj\\",
+      "outputPath": "C:\\Users\\amara\\RiderProjects\\DNP_Assignment_1\\DNP Assignment\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\amara\\AppData\\Roaming\\NuGet\\NuGet.Config"
