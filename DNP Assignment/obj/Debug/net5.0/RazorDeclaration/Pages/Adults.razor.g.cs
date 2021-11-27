@@ -119,10 +119,10 @@ using DNP_Assignment.Data;
         AdultsToShow = filterAdultList;
     }
 
-    private void RemoveTodo(int adultId)
+    private async  void RemoveTodo(int adultId)
     {
         Adult adultToRemove = AdultsToShow.First(a => a.Id == adultId);
-        _adultData.RemoveAdults(adultId);
+        await _adultData.RemoveAdults(adultId);
         navMan.NavigateTo("/Adults",true);
     }
 

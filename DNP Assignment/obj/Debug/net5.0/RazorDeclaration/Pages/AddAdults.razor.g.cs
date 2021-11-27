@@ -118,10 +118,10 @@ using Models;
     private Adult newAdult = new Adult();
     private Job job = new Job();
 
-    private void AddNewAdult()
+    private async void AddNewAdult()
     {
         newAdult.JobTitle = job;
-        _adultData.AddAdults(newAdult);
+       await _adultData.AddAdults(newAdult);
         NavigationManager.NavigateTo("/Adults");
     }
     
